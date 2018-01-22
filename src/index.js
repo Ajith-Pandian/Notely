@@ -2,23 +2,33 @@ import React, { Component } from "react";
 import { View, Text } from "react-native";
 
 import SideMenu from "react-native-side-menu";
+import { StackNavigator } from "react-navigation";
+import Home from "./Home";
+import DetailsScreen from "./DetailsScreen";
 
-import Contents from "./Contents";
 import Menu from "./Menu";
 import { DRAWER_WIDTH } from "./Constants";
 
-export default class App extends Component {
-  render() {
-    const menu = <Menu />;
-    return (
-      <SideMenu
-        menu={menu}
-        openMenuOffset={DRAWER_WIDTH}
-        bounceBackOnOverdraw={false}
-        menuPosition={"right"}
-      >
-        <Contents />
-      </SideMenu>
-    );
-  }
-}
+const HomeWithMenu = () => {
+  return (
+    <SideMenu
+      menu={<Menu />}
+      openMenuOffset={DRAWER_WIDTH}
+      bounceBackOnOverdraw={false}
+      disableGestures={false} // FIXME: Change on Filter Implementation
+      menuPosition={"right"}
+    >
+      <Home />
+    </SideMenu>
+  );
+};
+HomeWithMenu.navigationOptions = {
+  header: null
+};
+
+const App = StackNavigator({
+  Home: { screen: HomeWithMenu },
+  Details: { screen: DetailsScreen }
+});
+
+export default App;
