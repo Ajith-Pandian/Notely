@@ -1,26 +1,24 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { View, Text } from "react-native";
+
+import SideMenu from "react-native-side-menu";
+
+import Contents from "./Contents";
+import Menu from "./Menu";
+import { DRAWER_WIDTH } from "./Constants";
 
 export default class App extends Component {
   render() {
+    const menu = <Menu />;
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to Notely!</Text>
-      </View>
+      <SideMenu
+        menu={menu}
+        openMenuOffset={DRAWER_WIDTH}
+        bounceBackOnOverdraw={false}
+        menuPosition={"right"}
+      >
+        <Contents />
+      </SideMenu>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#F5FCFF"
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: "center",
-    margin: 10
-  }
-});
