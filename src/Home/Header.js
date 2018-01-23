@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { HEADER_HEIGHT, HEADER_BG_COLOR } from "./Constants";
-import IconButton from "./Components/IconButton";
+import { HEADER_HEIGHT, HEADER_BG_COLOR } from "../Constants";
+import IconButton from "../Components/IconButton";
 
 export default class Header extends Component {
   render() {
@@ -11,12 +11,14 @@ export default class Header extends Component {
         <Text style={sHeaderText}>Notely</Text>
         <View style={{ flexDirection: "row" }}>
           <IconButton
-            style={{ marginHorizontal: 5 }}
+            style={{ paddingHorizontal: 5, marginHorizontal: 5 }}
+            iconStyle={{ color: "black" }}
             type={IconButton.ADD}
             onPress={() => console.log("Add clicked")}
           />
           <IconButton
-            style={{ marginHorizontal: 5 }}
+            style={{ paddingHorizontal: 5, marginHorizontal: 5 }}
+            iconStyle={{ color: "black" }}
             type={IconButton.FILTER}
             onPress={() => console.log("Filter clicked")}
           />

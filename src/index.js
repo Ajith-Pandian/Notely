@@ -3,10 +3,10 @@ import { View, Text } from "react-native";
 
 import SideMenu from "react-native-side-menu";
 import { StackNavigator } from "react-navigation";
-import Home from "./Home";
-import DetailsScreen from "./DetailsScreen";
 
+import Home from "./Home";
 import Menu from "./Menu";
+import DetailsScreen from "./Details";
 import { MENU_WIDTH } from "./Constants";
 
 const HomeWithMenu = () => {

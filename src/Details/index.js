@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-export default class DetailsScreen extends Component {
+export default class Details extends Component {
   render() {
     return (
       <View style={styles.sContainer}>

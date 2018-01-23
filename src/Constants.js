@@ -9,7 +9,7 @@ export const LIST_BG_COLOR = "#FFFFFF";
 
 export const STAR_COLOR = "#F7CF1C";
 export const HEART_COLOR = "#F9374F";
-export const DESCRIPTION_COLOR = "#B6B6B6";
+export const DESCRIPTION_COLOR = "#B0B0B0";
 export const DELETE_BR_COLOR = "#E2253D";
 
 export const MENU_BG_COLOR = "#4E4E4E";
@@ -19,4 +19,5 @@ export const MENU_IC_ENABLE_COLOR = "#50D6B7";
 export const MENU_IC_DISABLE_COLOR = "#868686";
 
 //disabled favorite & star / divider color
-export const GRAY = "#F1F1F1";
+export const GRAY1 = "#EEEEEE";
+export const GRAY = "#CCCCCC";

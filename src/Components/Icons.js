@@ -1,10 +1,10 @@
 import React from "react";
 import MaterialIcon from "react-native-vector-icons/MaterialIcons";
 import { TouchableOpacity } from "react-native";
-import { GRAY as DEFAULT } from "../Constants";
+import { GRAY1 as DEFAULT } from "../Constants";
 
 const BaseIcon = props => {
-  let { name, size = 30, color = "black", ...otherProps } = props;
+  let { name, size = 30, color = DEFAULT, ...otherProps } = props;
   return <MaterialIcon name={name} size={size} color={color} {...otherProps} />;
 };
 
