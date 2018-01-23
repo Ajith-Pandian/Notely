@@ -2,7 +2,8 @@ import { Dimensions } from "react-native";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
-export const DRAWER_WIDTH = SCREEN_WIDTH * 0.4;
+export const MENU_WIDTH = SCREEN_WIDTH * 0.45;
+export const HEADER_HEIGHT = 100;
 export const HEADER_BG_COLOR = "#F5F5F5";
 export const LIST_BG_COLOR = "#FFFFFF";
 

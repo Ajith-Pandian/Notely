@@ -7,13 +7,13 @@ import Home from "./Home";
 import DetailsScreen from "./DetailsScreen";
 
 import Menu from "./Menu";
-import { DRAWER_WIDTH } from "./Constants";
+import { MENU_WIDTH } from "./Constants";
 
 const HomeWithMenu = () => {
   return (
     <SideMenu
       menu={<Menu />}
-      openMenuOffset={DRAWER_WIDTH}
+      openMenuOffset={MENU_WIDTH}
       bounceBackOnOverdraw={false}
       disableGestures={false} // FIXME: Change on Filter Implementation
       menuPosition={"right"}
@@ -22,6 +22,7 @@ const HomeWithMenu = () => {
     </SideMenu>
   );
 };
+
 HomeWithMenu.navigationOptions = {
   header: null
 };
