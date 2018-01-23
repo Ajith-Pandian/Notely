@@ -3,7 +3,9 @@ import { View, Text } from "react-native";
 
 import SideMenu from "react-native-side-menu";
 import { StackNavigator } from "react-navigation";
+import { Provider } from "react-redux";
 
+import store from "./Store";
 import Home from "./Home";
 import Menu from "./Menu";
 import DetailsScreen from "./Details";
@@ -32,4 +34,10 @@ const App = StackNavigator({
   Details: { screen: DetailsScreen }
 });
 
-export default App;
+const ReduxApp = () => (
+  <Provider store={store}>
+    <App />
+  </Provider>
+);
+
+export default ReduxApp;
