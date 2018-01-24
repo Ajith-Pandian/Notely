@@ -6,28 +6,9 @@ import { StackNavigator } from "react-navigation";
 import { Provider } from "react-redux";
 
 import store from "./Store";
-import Home from "./Home";
-import Menu from "./Menu";
+import HomeWithMenu from "./Home";
 import DetailsScreen from "./Details";
 import { MENU_WIDTH } from "./Constants";
-
-const HomeWithMenu = () => {
-  return (
-    <SideMenu
-      menu={<Menu />}
-      openMenuOffset={MENU_WIDTH}
-      bounceBackOnOverdraw={false}
-      disableGestures={false} // FIXME: Change on Filter Implementation
-      menuPosition={"right"}
-    >
-      <Home />
-    </SideMenu>
-  );
-};
-
-HomeWithMenu.navigationOptions = {
-  header: null
-};
 
 const App = StackNavigator({
   Home: { screen: HomeWithMenu },

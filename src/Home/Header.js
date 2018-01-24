@@ -6,6 +6,7 @@ import IconButton from "../Components/IconButton";
 export default class Header extends Component {
   render() {
     let { sHeaderContainer, sHeaderText } = styles;
+    let { onAddPress, onFilterPress, hasFilter } = this.props;
     return (
       <View style={sHeaderContainer}>
         <Text style={sHeaderText}>Notely</Text>
@@ -14,13 +15,14 @@ export default class Header extends Component {
             style={{ paddingHorizontal: 5, marginHorizontal: 5 }}
             iconStyle={{ color: "black" }}
             type={IconButton.ADD}
-            onPress={() => console.log("Add clicked")}
+            onPress={() => onAddPress()}
           />
           <IconButton
             style={{ paddingHorizontal: 5, marginHorizontal: 5 }}
             iconStyle={{ color: "black" }}
             type={IconButton.FILTER}
-            onPress={() => console.log("Filter clicked")}
+            onPress={() => onFilterPress()}
+            hasBadge={hasFilter}
           />
         </View>
       </View>

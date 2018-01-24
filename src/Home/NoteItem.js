@@ -1,33 +1,35 @@
 import React, { Component } from "react";
 import { StyleSheet, View, Text } from "react-native";
 
-import { DESCRIPTION_COLOR, GRAY, STAR_COLOR, FAV_COLOR } from "../Constants";
+import { DESCRIPTION_COLOR, GRAY, HEART_COLOR, FAV_COLOR } from "../Constants";
 import IconButton from "../Components/IconButton";
 
-const NoteItem = ({ note }) => {
+const NoteItem = ({ note, onStarPress, onFavPress }) => {
   let { sContainer, sTitle, sDescription, sTime, sActionLayout } = styles;
-  //let { title, description, time, isFavorite, isStarred } = note;
+  let { title, description, time, isFavorite, isHearted } = note;
   return (
     <View style={sContainer}>
-      <View style={{}}>
-        <Text style={sTitle}>And then were none</Text>
-        <Text style={sDescription}>
-          Ten little soldier boys went out to dine
+      <View style={{ flex: 4 }}>
+        <Text maxLength={20} numberOfLines={1} style={sTitle}>
+          {title}
         </Text>
-        <Text style={sTime}>Today at 6:30 PM</Text>
+        <Text numberOfLines={1} style={sDescription}>
+          {description}
+        </Text>
+        <Text style={sTime}>Today at {time}</Text>
       </View>
       <View style={sActionLayout}>
         <IconButton
-          type={IconButton.STAR}
+          type={IconButton.HEART}
           style={{ marginHorizontal: 6 }}
-          iconStyle={{ color: STAR_COLOR }}
-          onPress={() => console.log("star clicked")}
+          iconStyle={{ color: isHearted ? HEART_COLOR : GRAY }}
+          onPress={() => onStarPress(!isHearted)}
         />
         <IconButton
           type={IconButton.FAVORITE}
           style={{ marginHorizontal: 6 }}
-          iconStyle={{ color: FAV_COLOR }}
-          onPress={() => console.log("fav clicked")}
+          iconStyle={{ color: isFavorite ? FAV_COLOR : GRAY }}
+          onPress={() => onFavPress(!isFavorite)}
         />
       </View>
     </View>
@@ -59,6 +61,7 @@ const styles = StyleSheet.create({
     color: GRAY
   },
   sActionLayout: {
+    flex: 1,
     margin: 5,
     flexDirection: "row",
     alignSelf: "flex-start",

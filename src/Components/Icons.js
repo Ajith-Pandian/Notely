@@ -16,7 +16,7 @@ export default Icon;
 
 Icon.FILTER = "filter-list";
 Icon.FAVORITE = "favorite";
-Icon.STAR = "star-rate";
+Icon.HEART = "star-rate";
 Icon.DONE = "done";
 Icon.CLOSE = "close";
 Icon.ADD = "add";

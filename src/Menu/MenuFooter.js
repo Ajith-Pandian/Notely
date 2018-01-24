@@ -3,10 +3,10 @@ import { StyleSheet, TouchableOpacity, Text } from "react-native";
 
 import { MENU_WIDTH } from "../Constants";
 
-const MenuFooter = () => {
+const MenuFooter = ({ onApplyPress }) => {
   let { sContainer, sText } = styles;
   return (
-    <TouchableOpacity style={sContainer}>
+    <TouchableOpacity style={sContainer} onPress={() => onApplyPress()}>
       <Text style={sText}>APPLY</Text>
     </TouchableOpacity>
   );

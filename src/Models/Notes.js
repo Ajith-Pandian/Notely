@@ -5,13 +5,13 @@ export default class Notes {
     description,
     time = new Date(),
     isFavorite = false,
-    isStarred = false
+    isHearted = false
   ) {
     this.id = id;
     this.title = title;
     this.description = description;
     this.time = time;
     this.isFavorite = isFavorite;
-    this.isStarred = isStarred;
+    this.isHearted = isHearted;
   }
 }

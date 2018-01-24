@@ -1,16 +1,19 @@
 import {
   ADD_NOTE,
   REMOVE_NOTE,
-  STAR_NOTE,
-  FAVORITE_NOTE
+  HEART_NOTE,
+  FAVORITE_NOTE,
+  APPLY_FILTERS,
+  MENU_VISIBLE
 } from "../StoreConstants";
 import Notes from "../../Models/Notes";
-//import { getSortedList } from "../../Utils";
+import { getDummyNotes } from "../../Utils";
 
 import update from "immutability-helper";
 
 const initialState = {
-  notes: []
+  notes: getDummyNotes(),
+  isFiltered: false
 };
 
 export default function NotesReducer(state = initialState, action) {
@@ -21,13 +24,13 @@ export default function NotesReducer(state = initialState, action) {
         notes: [...state.notes, action.note]
       };
     }
-    case STAR_NOTE: {
-      let { id, isStarred } = action;
+    case HEART_NOTE: {
+      let { id, isHearted } = action;
       let index = state.notes.findIndex(item => item.id === id);
       return update(state, {
         notes: {
           [index]: {
-            isStarred: { $set: isStarred }
+            isHearted: { $set: isHearted }
           }
         }
       });
@@ -48,6 +51,23 @@ export default function NotesReducer(state = initialState, action) {
       let index = state.notes.findIndex(item => item.id === id);
       return update(state, { notes: { $splice: [[index, 1]] } });
     }
+
+    case APPLY_FILTERS: {
+      let { isFavorite, isHearted, isPoem, isStory } = action.filters;
+      let isFiltered = isFavorite || isHearted || isPoem || isStory;
+      return {
+        ...state,
+        notes: initialState.notes.filter(
+          note =>
+            (isFavorite ? note.isFavorite : note) &&
+            (isHearted ? note.isHearted : note) &&
+            (isPoem ? note.isPoem : note) &&
+            (isStory ? note.isStory : note)
+        ),
+        isFiltered
+      };
+    }
+
     default:
       return state;
   }

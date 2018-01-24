@@ -15,7 +15,7 @@ const IconButton = props => {
 
 IconButton.FILTER = "filter-list";
 IconButton.FAVORITE = "favorite";
-IconButton.STAR = "star";
+IconButton.HEART = "star";
 IconButton.DONE = "done";
 IconButton.CLOSE = "close";
 IconButton.ADD = "add";

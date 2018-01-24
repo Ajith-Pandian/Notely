@@ -1,26 +1,47 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
+import { connect } from "react-redux";
+import SideMenu from "react-native-side-menu";
 
-import Header from "./Header";
-import SwipeList from "./SwipeList";
-import NotesList from "./NotesList";
+import Home from "./Home";
+import Menu from "../Menu";
+import { changeMenuVisible } from "../Store/Actions/AppActions";
+import { MENU_WIDTH } from "../Constants";
 
-export default class Home extends Component {
+class HomeWithMenu extends Component {
   render() {
+    let { menuVisible, _changeMenuVisible } = this.props;
     return (
-      <View style={{ flex: 1 }}>
-        <Header />
-        <View style={styles.sContainer}>
-          <NotesList />
-        </View>
-      </View>
+      <SideMenu
+        isOpen={menuVisible}
+        menu={<Menu />}
+        openMenuOffset={MENU_WIDTH}
+        bounceBackOnOverdraw={false}
+        disableGestures={true}
+        menuPosition={"right"}
+      >
+        <Home
+          onAddPress={() => console.log("add clicked")}
+          onFilterPress={() => _changeMenuVisible(true)}
+        />
+      </SideMenu>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  sContainer: {
-    flex: 1,
-    backgroundColor: "white"
-  }
+HomeWithMenu.navigationOptions = {
+  header: null
+};
+
+const mapStateToProps = ({ AppStateReducer }) => {
+  let { menuVisible } = AppStateReducer;
+  return {
+    menuVisible
+  };
+};
+
+const mapDispatchToProps = (dispatch, props) => ({
+  _changeMenuVisible: menuVisible => dispatch(changeMenuVisible(menuVisible))
 });
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeWithMenu);
