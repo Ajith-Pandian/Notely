@@ -3,6 +3,7 @@ import {
   REMOVE_NOTE,
   HEART_NOTE,
   FAVORITE_NOTE,
+  CHANGE_FILTERS,
   APPLY_FILTERS,
   MENU_VISIBLE
 } from "../StoreConstants";
@@ -10,10 +11,17 @@ import Notes from "../../Models/Notes";
 import { getDummyNotes } from "../../Utils";
 
 import update from "immutability-helper";
-
+const initialFilterState = {
+  isFavorite: false,
+  isHearted: false,
+  isPoem: false,
+  isStory: false
+};
 const initialState = {
   notes: getDummyNotes(),
-  isFiltered: false
+  isFiltered: false,
+  filters: initialFilterState,
+  tempFilters: initialFilterState
 };
 
 export default function NotesReducer(state = initialState, action) {
@@ -55,6 +63,7 @@ export default function NotesReducer(state = initialState, action) {
     case APPLY_FILTERS: {
       let { isFavorite, isHearted, isPoem, isStory } = action.filters;
       let isFiltered = isFavorite || isHearted || isPoem || isStory;
+      let filters = { isFavorite, isHearted, isPoem, isStory };
       return {
         ...state,
         notes: initialState.notes.filter(
@@ -64,7 +73,16 @@ export default function NotesReducer(state = initialState, action) {
             (isPoem ? note.isPoem : note) &&
             (isStory ? note.isStory : note)
         ),
-        isFiltered
+        isFiltered,
+        filters
+      };
+    }
+    case CHANGE_FILTERS: {
+      let { isFavorite, isHearted, isPoem, isStory } = action.filters;
+      let tempFilters = { isFavorite, isHearted, isPoem, isStory };
+      return {
+        ...state,
+        tempFilters
       };
     }
 

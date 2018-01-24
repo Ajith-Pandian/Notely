@@ -19,6 +19,7 @@ class HomeWithMenu extends Component {
         bounceBackOnOverdraw={false}
         disableGestures={true}
         menuPosition={"right"}
+        onChange={menuVisible => !menuVisible?_changeMenuVisible(menuVisible):null}
       >
         <Home
           onAddPress={() => console.log("add clicked")}

@@ -6,7 +6,7 @@ import IconButton from "../Components/IconButton";
 
 const COLOR = "white";
 
-const MenuHeader = () => {
+const MenuHeader = ({ onClosePress }) => {
   let { sContainer, sHeaderText } = styles;
   return (
     <View style={sContainer}>
@@ -14,7 +14,7 @@ const MenuHeader = () => {
       <IconButton
         type={IconButton.CLOSE}
         iconStyle={{ color: COLOR }}
-        onPress={() => console.log("Add clicked")}
+        onPress={() => onClosePress()}
       />
     </View>
   );
