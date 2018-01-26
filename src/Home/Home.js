@@ -5,7 +5,11 @@ import { connect } from "react-redux";
 import Header from "./Header";
 import SwipeList from "./SwipeList";
 import NotesList from "./NotesList";
-import { heartNote, favoriteNote } from "../Store/Actions/NotesActions";
+import {
+  heartNote,
+  favoriteNote,
+  deleteNote
+} from "../Store/Actions/NotesActions";
 
 class Home extends Component {
   render() {
@@ -13,12 +17,14 @@ class Home extends Component {
       onAddPress,
       onFilterPress,
       notes,
+      filteredNotes,
       navigation,
       isFiltered,
       _heartNote,
-      _favoriteNote
+      _favoriteNote,
+      _deleteNote
     } = this.props;
-
+    notes = isFiltered ? filteredNotes : notes;
     return (
       <View style={{ flex: 1 }}>
         <Header
@@ -36,6 +42,7 @@ class Home extends Component {
             onItemFavoritePress={(itemId, isFavorite) =>
               _favoriteNote(itemId, isFavorite)
             }
+            onItemDelete={itemId => _deleteNote(itemId)}
           />
         </View>
       </View>
@@ -43,16 +50,18 @@ class Home extends Component {
   }
 }
 const mapStateToProps = ({ NotesReducer }) => {
-  let { notes, isFiltered } = NotesReducer;
+  let { notes, filteredNotes, isFiltered } = NotesReducer;
   return {
     notes,
+    filteredNotes,
     isFiltered
   };
 };
 
 const mapDispatchToProps = (dispatch, props) => ({
   _heartNote: (id, isHearted) => dispatch(heartNote(id, isHearted)),
-  _favoriteNote: (id, isFavorite) => dispatch(favoriteNote(id, isFavorite))
+  _favoriteNote: (id, isFavorite) => dispatch(favoriteNote(id, isFavorite)),
+  _deleteNote: id => dispatch(deleteNote(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

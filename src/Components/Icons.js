@@ -21,3 +21,4 @@ Icon.DONE = "done";
 Icon.CLOSE = "close";
 Icon.ADD = "add";
 Icon.BACK = "arrow-back";
+Icon.DELETE = "delete";

@@ -79,7 +79,7 @@ export default function NotesReducer(state = initialState, action) {
       let filters = { isFavorite, isHearted, isPoem, isStory };
       return {
         ...state,
-        notes: initialState.notes.filter(
+        filteredNotes: state.notes.filter(
           note =>
             (isFavorite ? note.isFavorite : note) &&
             (isHearted ? note.isHearted : note) &&

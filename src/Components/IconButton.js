@@ -20,6 +20,7 @@ IconButton.DONE = "done";
 IconButton.CLOSE = "close";
 IconButton.ADD = "add";
 IconButton.BACK = "arrow-back";
+IconButton.DELETE = "delete";
 
 export default IconButton;
 
