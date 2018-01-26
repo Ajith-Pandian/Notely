@@ -10,7 +10,7 @@ import { MENU_WIDTH } from "../Constants";
 
 class HomeWithMenu extends Component {
   render() {
-    let { menuVisible, _changeMenuVisible } = this.props;
+    let { menuVisible, navigation, _changeMenuVisible } = this.props;
     return (
       <SideMenu
         isOpen={menuVisible}
@@ -19,10 +19,13 @@ class HomeWithMenu extends Component {
         bounceBackOnOverdraw={false}
         disableGestures={true}
         menuPosition={"right"}
-        onChange={menuVisible => !menuVisible?_changeMenuVisible(menuVisible):null}
+        onChange={menuVisible =>
+          !menuVisible ? _changeMenuVisible(menuVisible) : null
+        }
       >
         <Home
-          onAddPress={() => console.log("add clicked")}
+          navigation={navigation}
+          onAddPress={() => navigation.navigate("Details")}
           onFilterPress={() => _changeMenuVisible(true)}
         />
       </SideMenu>

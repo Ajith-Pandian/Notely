@@ -13,6 +13,7 @@ class Home extends Component {
       onAddPress,
       onFilterPress,
       notes,
+      navigation,
       isFiltered,
       _heartNote,
       _favoriteNote
@@ -28,6 +29,7 @@ class Home extends Component {
         <View style={styles.sContainer}>
           <NotesList
             notes={notes}
+            navigation={navigation}
             onItemStarPress={(itemId, isHearted) =>
               _heartNote(itemId, isHearted)
             }

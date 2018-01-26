@@ -3,6 +3,7 @@ import {
   REMOVE_NOTE,
   HEART_NOTE,
   FAVORITE_NOTE,
+  UPDATE_TITLE_AND_DESCRIPTION,
   CHANGE_FILTERS,
   APPLY_FILTERS,
   MENU_VISIBLE
@@ -50,6 +51,18 @@ export default function NotesReducer(state = initialState, action) {
         notes: {
           [index]: {
             isFavorite: { $set: isFavorite }
+          }
+        }
+      });
+    }
+    case UPDATE_TITLE_AND_DESCRIPTION: {
+      let { id, title, description } = action;
+      let index = state.notes.findIndex(item => item.id === id);
+      return update(state, {
+        notes: {
+          [index]: {
+            title: { $set: title },
+            description: { $set: description }
           }
         }
       });

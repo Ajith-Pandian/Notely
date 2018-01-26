@@ -2,6 +2,7 @@ import {
   ADD_NOTE,
   REMOVE_NOTE,
   HEART_NOTE,
+  UPDATE_TITLE_AND_DESCRIPTION,
   FAVORITE_NOTE,
   CHANGE_FILTERS,
   APPLY_FILTERS
@@ -12,21 +13,14 @@ export const createNote = note => dispatch => dispatch(_createNote(note));
 
 export const deleteNote = id => dispatch => dispatch(_deleteNote(id));
 
-export const heartNote = (id, isHearted) => {
-  return (dispatch, getState) => {
-    dispatch(_heartNote(id, isHearted));
-    let { isFiltered, filters } = getState().NotesReducer;
-    isFiltered ? dispatch(_applyFilters(filters)) : null;
-  };
-};
+export const updateTitleAndDescription = (id, title, description) => dispatch =>
+  dispatch(_updateTitleAndDescription(id, title, description));
 
-export const favoriteNote = (id, isFavorite) => {
-  return (dispatch, getState) => {
-    dispatch(_favoriteNote(id, isFavorite));
-    let { isFiltered, filters } = getState().NotesReducer;
-    isFiltered ? dispatch(_applyFilters(filters)) : null;
-  };
-};
+export const heartNote = (id, isHearted) => dispatch =>
+  dispatch(_heartNote(id, isHearted));
+
+export const favoriteNote = (id, isFavorite) => dispatch =>
+  dispatch(_favoriteNote(id, isFavorite));
 
 export const applyFilters = filters => dispatch =>
   dispatch(_applyFilters(filters));
@@ -44,6 +38,15 @@ function _deleteNote(id) {
     id
   };
 }
+function _updateTitleAndDescription(id, title, description) {
+  return {
+    type: UPDATE_TITLE_AND_DESCRIPTION,
+    id,
+    title,
+    description
+  };
+}
+
 function _heartNote(id, isHearted) {
   return {
     type: HEART_NOTE,

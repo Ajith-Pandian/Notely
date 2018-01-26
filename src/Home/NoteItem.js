@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, TouchableOpacity, View, Text } from "react-native";
 
 import { DESCRIPTION_COLOR, GRAY, HEART_COLOR, FAV_COLOR } from "../Constants";
 import IconButton from "../Components/IconButton";
 
-const NoteItem = ({ note, onStarPress, onFavPress }) => {
+const NoteItem = ({ note, onStarPress, onFavPress, onItemPress }) => {
   let { sContainer, sTitle, sDescription, sTime, sActionLayout } = styles;
   let { title, description, time, isFavorite, isHearted } = note;
   return (
-    <View style={sContainer}>
+    <TouchableOpacity onPress={() => onItemPress()} style={sContainer}>
       <View style={{ flex: 4 }}>
         <Text maxLength={20} numberOfLines={1} style={sTitle}>
           {title}
@@ -32,7 +32,7 @@ const NoteItem = ({ note, onStarPress, onFavPress }) => {
           onPress={() => onFavPress(!isFavorite)}
         />
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 export default NoteItem;

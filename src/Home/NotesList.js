@@ -9,16 +9,23 @@ const ds = new ListView.DataSource({
 
 export default class NotesList extends Component {
   render() {
-    let { notes, onItemStarPress, onItemFavoritePress } = this.props;
+    let {
+      notes,
+      navigation,
+      onItemStarPress,
+      onItemFavoritePress
+    } = this.props;
     let dataSource = ds.cloneWithRows(this.props.notes);
+
     return (
       <ListView
         style={styles.container}
         contentContainerStyle={styles.contentContainer}
         dataSource={dataSource}
-        renderRow={data => (
+        renderRow={note => (
           <NoteItem
-            note={data}
+            note={note}
+            onItemPress={() => navigation.navigate("Details", { note })}
             onStarPress={isHearted => onItemStarPress(data.id, isHearted)}
             onFavPress={isFavorite => onItemFavoritePress(data.id, isFavorite)}
           />
