@@ -8,7 +8,7 @@ import {
   APPLY_FILTERS,
   MENU_VISIBLE
 } from "../StoreConstants";
-import Notes from "../../Models/Notes";
+import Note from "../../Models/Notes";
 import { getDummyNotes } from "../../Utils";
 
 import update from "immutability-helper";
@@ -28,9 +28,13 @@ const initialState = {
 export default function NotesReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_NOTE: {
+      let { title, description } = action.note;
+      let notes = state.notes;
+      let id = notes[notes.length - 1].id;
+      note = new Note(id, title, description);
       return {
         ...state,
-        notes: [...state.notes, action.note]
+        notes: [...state.notes, note]
       };
     }
     case HEART_NOTE: {

@@ -5,6 +5,7 @@ import Swipeout from "react-native-swipeout";
 import NoteItem from "./NoteItem";
 import Icon from "../Components/Icons";
 import { DELETE_BUTTON_WIDTH, DELETE_BG_COLOR } from "../Constants";
+import { sortByDate } from "../Utils";
 
 const ds = new ListView.DataSource({
   rowHasChanged: (r1, r2) => r1 !== r2
@@ -30,7 +31,7 @@ export default class NotesList extends Component {
       onItemFavoritePress,
       onItemDelete
     } = this.props;
-    let dataSource = ds.cloneWithRows(this.props.notes);
+    let dataSource = ds.cloneWithRows(sortByDate(this.props.notes));
     return (
       <ListView
         style={styles.container}

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, TouchableOpacity, View, Text } from "react-native";
-
+import moment from "moment";
 import { DESCRIPTION_COLOR, GRAY, HEART_COLOR, FAV_COLOR } from "../Constants";
 import IconButton from "../Components/IconButton";
 
@@ -16,7 +16,7 @@ const NoteItem = ({ note, onStarPress, onFavPress, onItemPress }) => {
         <Text numberOfLines={1} style={sDescription}>
           {description}
         </Text>
-        <Text style={sTime}>Today at {time}</Text>
+        <Text style={sTime}>{moment(time).calendar()}</Text>
       </View>
       <View style={sActionLayout}>
         <IconButton

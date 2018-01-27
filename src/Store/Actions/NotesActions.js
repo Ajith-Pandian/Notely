@@ -7,7 +7,7 @@ import {
   CHANGE_FILTERS,
   APPLY_FILTERS
 } from "../StoreConstants";
-import Notes from "../../Models/Notes";
+import Note from "../../Models/Notes";
 
 export const createNote = note => dispatch => dispatch(_createNote(note));
 

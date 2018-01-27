@@ -25,7 +25,7 @@ class HomeWithMenu extends Component {
       >
         <Home
           navigation={navigation}
-          onAddPress={() => navigation.navigate("Details")}
+          onAddPress={() => navigation.navigate("Details", { isNew: true })}
           onFilterPress={() => _changeMenuVisible(true)}
         />
       </SideMenu>

@@ -5,7 +5,10 @@ import { connect } from "react-redux";
 import Header from "./Header";
 import IconButton from "../Components/IconButton";
 import Button from "../Components/Button";
-import { updateTitleAndDescription } from "../Store/Actions/NotesActions";
+import {
+  createNote,
+  updateTitleAndDescription
+} from "../Store/Actions/NotesActions";
 
 class Editor extends Component {
   render() {
@@ -40,12 +43,17 @@ class Details extends Component {
   constructor(props) {
     super(props);
     let { navigation } = props;
-    let note = navigation.state.params
-      ? navigation.state.params.note
-      : { id: 0, title: "Title", description: "Description" };
-    let { id, title, description } = note;
+    let isNew = navigation.state.params ? navigation.state.params.isNew : false;
+    let note =
+      navigation.state && navigation.state.params
+        ? navigation.state.params.note
+        : { id: 0, title: "", description: "" };
+    let id = !isNew ? note.id : 0;
+    let title = !isNew ? note.title : "";
+    let description = !isNew ? note.description : "";
     this.state = {
-      isEdit: false,
+      isEdit: isNew,
+      isNew,
       id,
       title,
       description,
@@ -54,8 +62,9 @@ class Details extends Component {
     };
   }
   render() {
-    let { navigation, _updateTitleAndDescription } = this.props;
+    let { navigation, _createNote, _updateTitleAndDescription } = this.props;
     let {
+      isNew,
       isEdit,
       title,
       description,
@@ -78,8 +87,11 @@ class Details extends Component {
                 isEdit: false
               },
               () => {
-                let { id, title, description } = this.state;
-                _updateTitleAndDescription(id, title, description);
+                let { isNew, id, title, description } = this.state;
+                isNew
+                  ? _createNote({ id, title, description })
+                  : _updateTitleAndDescription(id, title, description);
+                navigation.goBack();
               }
             )
           }
@@ -115,6 +127,7 @@ const mapStateToProps = ({ NotesReducer }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
+  _createNote: note => dispatch(createNote(note)),
   _updateTitleAndDescription: (id, title, description) =>
     dispatch(updateTitleAndDescription(id, title, description))
 });
