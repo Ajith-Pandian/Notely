@@ -41,8 +41,8 @@ const styles = StyleSheet.create({
     backgroundColor: HEADER_BG_COLOR
   },
   sHeaderText: {
+    fontFamily: "Abril Fatface",
     fontSize: 25,
-    fontWeight: "bold",
     color: "black"
   }
 });

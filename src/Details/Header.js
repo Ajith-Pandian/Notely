@@ -54,7 +54,8 @@ export default class Header extends Component {
               marginHorizontal: 40,
               marginBottom: 10,
               fontSize: 25,
-              color: "black"
+              color: "black",
+              fontFamily: "Abril Fatface"
             }}
             numberOfLines={3}
           >

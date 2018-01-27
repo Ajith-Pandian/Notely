@@ -56,6 +56,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>MaterialIcons.ttf</string>
+		<string>Abril Fatface.otf</string>
 	</array>
 </dict>
 </plist>

@@ -43,7 +43,6 @@ export default class NotesList extends Component {
               {
                 text: "Delete",
                 backgroundColor: DELETE_BG_COLOR,
-                underlayColor: "rgba(0, 0, 0, 1, 0.6)",
                 onPress: () => onItemDelete(note.id),
                 component: <DeleteButton />
               }
