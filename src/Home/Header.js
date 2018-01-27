@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { HEADER_HEIGHT, HEADER_BG_COLOR } from "../Constants";
+import {
+  HEADER_HEIGHT,
+  HEADER_BG_COLOR,
+  HEADER_FONT_SIZE,
+  ITEM_PADDING
+} from "../Constants";
 import IconButton from "../Components/IconButton";
 
 export default class Header extends Component {
@@ -12,13 +17,13 @@ export default class Header extends Component {
         <Text style={sHeaderText}>Notely</Text>
         <View style={{ flexDirection: "row" }}>
           <IconButton
-            style={{ paddingHorizontal: 5, marginHorizontal: 5 }}
+            style={{ marginHorizontal: ITEM_PADDING / 2 }}
             iconStyle={{ color: "black" }}
             type={IconButton.ADD}
             onPress={() => onAddPress()}
           />
           <IconButton
-            style={{ paddingHorizontal: 5, marginHorizontal: 5 }}
+            style={{ marginHorizontal: ITEM_PADDING / 2 }}
             iconStyle={{ color: "black" }}
             type={IconButton.FILTER}
             onPress={() => onFilterPress()}
@@ -37,12 +42,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "flex-end",
-    padding: 20,
+    padding: ITEM_PADDING,
     backgroundColor: HEADER_BG_COLOR
   },
   sHeaderText: {
     fontFamily: "Abril Fatface",
-    fontSize: 25,
+    fontSize: HEADER_FONT_SIZE,
     color: "black"
   }
 });

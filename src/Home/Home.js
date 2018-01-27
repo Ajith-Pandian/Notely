@@ -5,11 +5,13 @@ import { connect } from "react-redux";
 import Header from "./Header";
 import SwipeList from "./SwipeList";
 import NotesList from "./NotesList";
+import Button from "../Components/Button";
 import {
   heartNote,
   favoriteNote,
   deleteNote
 } from "../Store/Actions/NotesActions";
+import { ITEM_PADDING, MENU_TEXT_ENABLE_COLOR } from "../Constants";
 
 class Home extends Component {
   render() {
@@ -33,17 +35,41 @@ class Home extends Component {
           onFilterPress={() => onFilterPress()}
         />
         <View style={styles.sContainer}>
-          <NotesList
-            notes={notes}
-            navigation={navigation}
-            onItemStarPress={(itemId, isHearted) =>
-              _heartNote(itemId, isHearted)
-            }
-            onItemFavoritePress={(itemId, isFavorite) =>
-              _favoriteNote(itemId, isFavorite)
-            }
-            onItemDelete={itemId => _deleteNote(itemId)}
-          />
+          {notes && notes.length > 0 ? (
+            <NotesList
+              notes={notes}
+              navigation={navigation}
+              onItemStarPress={(itemId, isHearted) =>
+                _heartNote(itemId, isHearted)
+              }
+              onItemFavoritePress={(itemId, isFavorite) =>
+                _favoriteNote(itemId, isFavorite)
+              }
+              onItemDelete={itemId => _deleteNote(itemId)}
+            />
+          ) : (
+            <View
+              style={{
+                flex: 1,
+                alignItems: "center",
+                justifyContent: "center"
+              }}
+            >
+              <Text style={{ fontSize: 20, fontFamily: "Abril Fatface" }}>
+                No notes
+              </Text>
+              <Button
+                text={"CREATE NOTE"}
+                onPress={() => navigation.navigate("Details", { isNew: true })}
+                style={{
+                  marginHorizontal: ITEM_PADDING,
+                  paddingVertical: 5,
+                  paddingHorizontal: 20,
+                  backgroundColor: MENU_TEXT_ENABLE_COLOR
+                }}
+              />
+            </View>
+          )}
         </View>
       </View>
     );

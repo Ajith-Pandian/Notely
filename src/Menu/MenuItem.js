@@ -6,7 +6,9 @@ import {
   MENU_TEXT_ENABLE_COLOR,
   MENU_TEXT_DISABLE_COLOR,
   MENU_IC_ENABLE_COLOR,
-  MENU_IC_DISABLE_COLOR
+  MENU_IC_DISABLE_COLOR,
+  ITEM_TITLE_SIZE,
+  ITEM_PADDING
 } from "../Constants";
 import Icon from "../Components/Icons";
 class MenuItem extends Component {
@@ -19,7 +21,7 @@ class MenuItem extends Component {
         style={styles.sContainer}
         onPress={() => onSelect(!isSelected)}
       >
-        <Text style={{ fontSize: 20, color }}>{type}</Text>
+        <Text style={{ fontSize: ITEM_TITLE_SIZE, color }}>{type}</Text>
         <Icon name={Icon.DONE} color={iconColor} />
       </TouchableOpacity>
     );
@@ -38,6 +40,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     width: MENU_WIDTH - 40,
-    marginVertical: 20
+    marginVertical: ITEM_PADDING
   }
 });

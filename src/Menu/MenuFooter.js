@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity, Text } from "react-native";
 
-import { MENU_WIDTH } from "../Constants";
+import { MENU_WIDTH, ITEM_DESC_SIZE } from "../Constants";
 
 const MenuFooter = ({ onApplyPress }) => {
   let { sContainer, sText } = styles;
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   sText: {
-    fontSize: 18,
+    fontSize: ITEM_DESC_SIZE,
     textAlign: "center",
     textAlignVertical: "center",
     alignSelf: "center",

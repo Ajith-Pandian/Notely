@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, ScrollView, TextInput } from "react-native";
 import { connect } from "react-redux";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import Header from "./Header";
 import IconButton from "../Components/IconButton";
@@ -9,28 +10,26 @@ import {
   createNote,
   updateTitleAndDescription
 } from "../Store/Actions/NotesActions";
+import { ITEM_TITLE_SIZE, ITEM_DESC_SIZE } from "../Constants";
 
 class Editor extends Component {
   render() {
     let { title, description, onTitleChange, onDescriptionChange } = this.props;
+    let { sEditor, sEditorTitle, sEditorTextInput } = styles;
     return (
-      <View
-        style={{
-          marginTop: 10,
-          paddingVertical: 10,
-          paddingHorizontal: 20
-        }}
-      >
-        <Text style={{ fontSize: 20, fontWeight: "bold" }}>Title:</Text>
+      <View style={sEditor}>
+        <Text style={sEditorTitle}>Title:</Text>
         <TextInput
           multiline
+          style={sEditorTextInput}
           placeholder="Title"
           onChangeText={title => onTitleChange(title)}
           value={title}
         />
-        <Text style={{ fontSize: 20, fontWeight: "bold" }}>Description:</Text>
+        <Text style={[sEditorTitle, { marginTop: 10 }]}>Description:</Text>
         <TextInput
           multiline
+          style={sEditorTextInput}
           placeholder="Description"
           onChangeText={description => onDescriptionChange(description)}
           value={description}
@@ -73,7 +72,12 @@ class Details extends Component {
     } = this.state;
 
     return (
-      <ScrollView style={{ flex: 1, backgroundColor: "#FFF" }}>
+      <KeyboardAwareScrollView
+        style={{ flex: 1, backgroundColor: "#FFF" }}
+        resetScrollToCoords={{ x: 0, y: 0 }}
+        contentContainerStyle={styles.container}
+        scrollEnabled={true}
+      >
         <Header
           title={title}
           isEdit={isEdit}
@@ -95,7 +99,9 @@ class Details extends Component {
               }
             )
           }
-          onCancelPress={() => this.setState({ isEdit: false })}
+          onCancelPress={() =>
+            isNew ? navigation.goBack() : this.setState({ isEdit: false })
+          }
         />
         {isEdit ? (
           <Editor
@@ -107,12 +113,9 @@ class Details extends Component {
             }
           />
         ) : (
-          <Text style={styles.sWelcome}>
-            {description}
-            {description}
-          </Text>
+          <Text style={styles.sDescription}>{description}</Text>
         )}
-      </ScrollView>
+      </KeyboardAwareScrollView>
     );
   }
 }
@@ -138,10 +141,17 @@ const styles = StyleSheet.create({
   sContainer: {
     flex: 1
   },
-  sWelcome: {
-    fontSize: 20,
+  sDescription: {
+    fontSize: ITEM_TITLE_SIZE,
     backgroundColor: "#FFF",
     paddingVertical: 10,
     paddingHorizontal: 40
-  }
+  },
+  sEditor: {
+    marginTop: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 20
+  },
+  sEditorTitle: { fontSize: ITEM_TITLE_SIZE, fontWeight: "bold" },
+  sEditorTextInput: { fontSize: ITEM_TITLE_SIZE }
 });

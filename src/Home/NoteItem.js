@@ -1,7 +1,17 @@
 import React, { Component } from "react";
 import { StyleSheet, TouchableOpacity, View, Text } from "react-native";
 import moment from "moment";
-import { DESCRIPTION_COLOR, GRAY, HEART_COLOR, FAV_COLOR } from "../Constants";
+import {
+  DESCRIPTION_COLOR,
+  GRAY,
+  HEART_COLOR,
+  FAV_COLOR,
+  ITEM_PADDING,
+  ITEM_LAYOUT_HEIGHT,
+  ITEM_TITLE_SIZE,
+  ITEM_DESC_SIZE,
+  ITEM_TIME_SIZE
+} from "../Constants";
 import IconButton from "../Components/IconButton";
 
 const NoteItem = ({ note, onStarPress, onFavPress, onItemPress }) => {
@@ -39,30 +49,30 @@ export default NoteItem;
 
 const styles = StyleSheet.create({
   sContainer: {
-    height: 120,
-    paddingHorizontal: 20,
-    paddingVertical: 20,
+    height: ITEM_LAYOUT_HEIGHT,
+    paddingHorizontal: ITEM_PADDING,
+    paddingVertical: ITEM_PADDING,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between"
   },
   sTitle: {
-    fontSize: 20,
+    fontSize: ITEM_TITLE_SIZE,
     color: "black"
   },
   sDescription: {
     marginTop: 5,
-    fontSize: 16,
+    fontSize: ITEM_DESC_SIZE,
     color: DESCRIPTION_COLOR
   },
   sTime: {
     marginTop: 5,
-    fontSize: 12,
+    fontSize: ITEM_TIME_SIZE,
     color: GRAY
   },
   sActionLayout: {
     flex: 1,
-    margin: 5,
+    marginHorizontal: 20,
     flexDirection: "row",
     alignSelf: "flex-start",
     alignItems: "center"

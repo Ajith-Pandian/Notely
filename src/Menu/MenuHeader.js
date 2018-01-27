@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-import { MENU_WIDTH, HEADER_HEIGHT } from "../Constants";
+import { MENU_WIDTH, HEADER_HEIGHT, ITEM_TITLE_SIZE } from "../Constants";
 import IconButton from "../Components/IconButton";
 
 const COLOR = "white";
@@ -31,5 +31,8 @@ const styles = StyleSheet.create({
     width: MENU_WIDTH - 40,
     paddingBottom: 20
   },
-  sHeaderText: { fontSize: 20, color: COLOR }
+  sHeaderText: {
+    fontSize: ITEM_TITLE_SIZE,
+    color: COLOR
+  }
 });

@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, Animated, Platform } from "react-native";
-import { HEADER_HEIGHT, HEADER_BG_COLOR } from "../Constants";
+import {
+  HEADER_HEIGHT,
+  HEADER_BG_COLOR,
+  HEADER_FONT_SIZE,
+  ITEM_PADDING
+} from "../Constants";
 import IconButton from "../Components/IconButton";
 import Button from "../Components/Button";
 
@@ -24,11 +29,11 @@ export default class Header extends Component {
             flexDirection: "row",
             justifyContent: "space-between",
             alignItems: "center",
-            marginTop: 10
+            paddingVertical: 10
           }}
         >
           <IconButton
-            style={{ paddingHorizontal: 5, marginHorizontal: 5 }}
+            style={{ paddingHorizontal: ITEM_PADDING }}
             iconStyle={{ color: "black" }}
             type={IconButton.BACK}
             onPress={() => onBackPress()}
@@ -37,13 +42,13 @@ export default class Header extends Component {
             <Button
               text={isEdit ? "SAVE" : "EDIT"}
               onPress={() => (isEdit ? onSavePress() : onEditPress())}
-              style={{ marginHorizontal: 20 }}
+              style={{ marginHorizontal: ITEM_PADDING }}
             />
             {isEdit ? (
               <Button
                 text={"CANCEL"}
                 onPress={() => onCancelPress()}
-                style={{ marginHorizontal: 20 }}
+                style={{ marginHorizontal: ITEM_PADDING }}
               />
             ) : null}
           </View>
@@ -51,9 +56,9 @@ export default class Header extends Component {
         {!isEdit ? (
           <Text
             style={{
-              marginHorizontal: 40,
-              marginBottom: 10,
-              fontSize: 25,
+              marginHorizontal: 3 * ITEM_PADDING,
+              paddingBottom: 10,
+              fontSize: HEADER_FONT_SIZE,
               color: "black",
               fontFamily: "Abril Fatface"
             }}
