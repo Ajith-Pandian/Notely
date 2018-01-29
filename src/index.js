@@ -36,11 +36,7 @@ const App = () => (
 
 const ReduxApp = () => (
   <Provider store={store}>
-    <PersistGate
-      loading={<Loading />}
-      onBeforeLeft={() => console.log("onBeforeLeft")}
-      persistor={persistor}
-    >
+    <PersistGate loading={<Loading />} persistor={persistor}>
       <App />
     </PersistGate>
   </Provider>
