@@ -1,5 +1,6 @@
 import React from "react";
-import { TouchableOpacity, Text, View } from "react-native";
+import { TouchableOpacity, Text } from "react-native";
+
 import Icon from "./Icons";
 import {
   MENU_TEXT_ENABLE_COLOR,

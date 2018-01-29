@@ -1,43 +1,41 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, ScrollView, TextInput } from "react-native";
 import { connect } from "react-redux";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import Header from "./Header";
 import IconButton from "../Components/IconButton";
 import Button from "../Components/Button";
+import { ITEM_TITLE_SIZE, ITEM_DESC_SIZE } from "../Constants";
 import {
   createNote,
   updateTitleAndDescription
 } from "../Store/Actions/NotesActions";
-import { ITEM_TITLE_SIZE, ITEM_DESC_SIZE } from "../Constants";
 
-class Editor extends Component {
-  render() {
-    let { title, description, onTitleChange, onDescriptionChange } = this.props;
-    let { sEditor, sEditorTitle, sEditorTextInput } = styles;
-    return (
-      <View style={sEditor}>
-        <Text style={sEditorTitle}>Title:</Text>
-        <TextInput
-          multiline
-          style={sEditorTextInput}
-          placeholder="Title"
-          onChangeText={title => onTitleChange(title)}
-          value={title}
-        />
-        <Text style={[sEditorTitle, { marginTop: 10 }]}>Description:</Text>
-        <TextInput
-          multiline
-          style={sEditorTextInput}
-          placeholder="Description"
-          onChangeText={description => onDescriptionChange(description)}
-          value={description}
-        />
-      </View>
-    );
-  }
-}
+const Editor = props => {
+  let { title, description, onTitleChange, onDescriptionChange } = props;
+  let { sEditor, sEditorTitle, sEditorTextInput } = styles;
+  return (
+    <View style={sEditor}>
+      <Text style={sEditorTitle}>Title:</Text>
+      <TextInput
+        multiline
+        style={sEditorTextInput}
+        placeholder="Title"
+        onChangeText={title => onTitleChange(title)}
+        value={title}
+      />
+      <Text style={[sEditorTitle, { marginTop: 10 }]}>Description:</Text>
+      <TextInput
+        multiline
+        style={sEditorTextInput}
+        placeholder="Description"
+        onChangeText={description => onDescriptionChange(description)}
+        value={description}
+      />
+    </View>
+  );
+};
+
 class Details extends Component {
   constructor(props) {
     super(props);
@@ -72,12 +70,7 @@ class Details extends Component {
     } = this.state;
 
     return (
-      <KeyboardAwareScrollView
-        style={{ flex: 1, backgroundColor: "#FFF" }}
-        resetScrollToCoords={{ x: 0, y: 0 }}
-        contentContainerStyle={styles.container}
-        scrollEnabled={true}
-      >
+      <ScrollView style={{ flex: 1, backgroundColor: "#FFF" }}>
         <Header
           title={title}
           isEdit={isEdit}
@@ -115,7 +108,7 @@ class Details extends Component {
         ) : (
           <Text style={styles.sDescription}>{description}</Text>
         )}
-      </KeyboardAwareScrollView>
+      </ScrollView>
     );
   }
 }

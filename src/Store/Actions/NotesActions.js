@@ -2,12 +2,11 @@ import {
   ADD_NOTE,
   REMOVE_NOTE,
   HEART_NOTE,
-  UPDATE_TITLE_AND_DESCRIPTION,
   FAVORITE_NOTE,
-  CHANGE_FILTERS,
+  UPDATE_TITLE_AND_DESCRIPTION,
   APPLY_FILTERS
 } from "../StoreConstants";
-import Note from "../../Models/Notes";
+import Note from "../../Models/Note";
 
 export const createNote = note => dispatch => dispatch(_createNote(note));
 
@@ -59,13 +58,6 @@ function _favoriteNote(id, isFavorite) {
     type: FAVORITE_NOTE,
     id,
     isFavorite
-  };
-}
-
-function _changeFilters(filters) {
-  return {
-    type: CHANGE_FILTERS,
-    filters
   };
 }
 

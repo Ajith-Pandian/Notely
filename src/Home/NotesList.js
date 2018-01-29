@@ -10,18 +10,14 @@ import { sortByDate } from "../Utils";
 const ds = new ListView.DataSource({
   rowHasChanged: (r1, r2) => r1 !== r2
 });
+
 const DeleteButton = () => (
-  <View
-    style={{
-      flex: 1,
-      justifyContent: "center",
-      alignItems: "center"
-    }}
-  >
+  <View style={styles.sDeleteButton}>
     <Icon name={Icon.DELETE} color={"white"} />
     <Text style={{ color: "white" }}>Delete</Text>
   </View>
 );
+
 export default class NotesList extends Component {
   render() {
     let {
@@ -31,7 +27,7 @@ export default class NotesList extends Component {
       onItemFavoritePress,
       onItemDelete
     } = this.props;
-    let dataSource = ds.cloneWithRows(sortByDate(this.props.notes));
+    let dataSource = ds.cloneWithRows(sortByDate(notes));
     return (
       <ListView
         style={styles.container}
@@ -78,5 +74,10 @@ const styles = StyleSheet.create({
     flex: 1,
     height: StyleSheet.hairlineWidth,
     backgroundColor: "#8E8E8E"
+  },
+  sDeleteButton: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
   }
 });

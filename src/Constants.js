@@ -1,6 +1,5 @@
 import { Dimensions, PixelRatio, Platform } from "react-native";
-import units from "./ViewPortUnits";
-let { vw, vh, vmin, vmax } = units;
+
 const isIos = Platform.OS === "ios";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
@@ -14,14 +13,14 @@ export const HEADER_BG_COLOR = "#F5F5F5";
 export const LIST_BG_COLOR = "#FFFFFF";
 export const DELETE_BUTTON_WIDTH = SCREEN_WIDTH * 0.25;
 
-export const ICON_SIZE = 8 * vw;
+export const ICON_SIZE = 30;
 export const BADGE_SIZE = isIos ? 8 : 10;
 
-export const ITEM_LAYOUT_HEIGHT = PixelRatio.getPixelSizeForLayoutSize(50);
-export const ITEM_PADDING = PixelRatio.getPixelSizeForLayoutSize(8);
-export const ITEM_TITLE_SIZE = 9 * DEVICE_DENSITY;
-export const ITEM_DESC_SIZE = 7 * DEVICE_DENSITY;
-export const ITEM_TIME_SIZE = 5 * DEVICE_DENSITY;
+export const ITEM_LAYOUT_HEIGHT = 120;
+export const ITEM_PADDING = 20;
+export const ITEM_TITLE_SIZE = 20;
+export const ITEM_DESC_SIZE = 18;
+export const ITEM_TIME_SIZE = 16;
 
 export const HEART_COLOR = "#F7CF1C";
 export const FAV_COLOR = "#F9374F";

@@ -1,8 +1,8 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-import { MENU_WIDTH, HEADER_HEIGHT, ITEM_TITLE_SIZE } from "../Constants";
 import IconButton from "../Components/IconButton";
+import { MENU_WIDTH, HEADER_HEIGHT, ITEM_TITLE_SIZE } from "../Constants";
 
 const COLOR = "white";
 

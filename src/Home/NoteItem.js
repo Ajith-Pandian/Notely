@@ -45,6 +45,7 @@ const NoteItem = ({ note, onStarPress, onFavPress, onItemPress }) => {
     </TouchableOpacity>
   );
 };
+
 export default NoteItem;
 
 const styles = StyleSheet.create({

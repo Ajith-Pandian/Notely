@@ -18,7 +18,7 @@ const StackApp = StackNavigator({
 const MyStatusBar = ({ backgroundColor, ...props }) => (
   <View
     style={{
-      height: Platform.OS === "ios" ? 20 : StatusBar.currentHeight,
+      height: Platform.OS === "ios" ? 20 : undefined, //StatusBar Height
       backgroundColor
     }}
   >

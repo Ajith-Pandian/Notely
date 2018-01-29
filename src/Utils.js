@@ -1,6 +1,7 @@
-import data from "./data";
-import Note from "./Models/Notes";
 import moment from "moment";
+import data from "./data";
+import Note from "./Models/Note";
+
 export const getDummyNotes = () =>
   data.map(
     ({
@@ -24,5 +25,9 @@ export const getDummyNotes = () =>
         isStory
       )
   );
+
 export const sortByDate = data =>
   data.sort((a, b) => moment(b.time) - moment(a.time));
+
+export const sortById = data =>
+  data.sort((a, b) => moment(a.id) - moment(b.id));

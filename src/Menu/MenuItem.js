@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, TouchableOpacity, Text } from "react-native";
 
+import Icon from "../Components/Icons";
 import {
   MENU_WIDTH,
   MENU_TEXT_ENABLE_COLOR,
@@ -10,23 +11,21 @@ import {
   ITEM_TITLE_SIZE,
   ITEM_PADDING
 } from "../Constants";
-import Icon from "../Components/Icons";
-class MenuItem extends Component {
-  render() {
-    let { type, onSelect, isSelected } = this.props;
-    let color = isSelected ? MENU_TEXT_ENABLE_COLOR : MENU_TEXT_DISABLE_COLOR;
-    let iconColor = isSelected ? MENU_IC_ENABLE_COLOR : MENU_IC_DISABLE_COLOR;
-    return (
-      <TouchableOpacity
-        style={styles.sContainer}
-        onPress={() => onSelect(!isSelected)}
-      >
-        <Text style={{ fontSize: ITEM_TITLE_SIZE, color }}>{type}</Text>
-        <Icon name={Icon.DONE} color={iconColor} />
-      </TouchableOpacity>
-    );
-  }
-}
+
+const MenuItem = props => {
+  let { type, onSelect, isSelected } = props;
+  let color = isSelected ? MENU_TEXT_ENABLE_COLOR : MENU_TEXT_DISABLE_COLOR;
+  let iconColor = isSelected ? MENU_IC_ENABLE_COLOR : MENU_IC_DISABLE_COLOR;
+  return (
+    <TouchableOpacity
+      style={styles.sContainer}
+      onPress={() => onSelect(!isSelected)}
+    >
+      <Text style={{ fontSize: ITEM_TITLE_SIZE, color }}>{type}</Text>
+      <Icon name={Icon.DONE} color={iconColor} />
+    </TouchableOpacity>
+  );
+};
 
 MenuItem.HEARTED = "Hearted";
 MenuItem.FAVORITE = "Favorite";

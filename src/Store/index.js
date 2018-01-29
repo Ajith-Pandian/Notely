@@ -18,8 +18,10 @@ const store = createStore(
   {},
   compose(applyMiddleware(...middlewares), autoRehydrate(true))
 );
+
 persistStore(store, {
   storage: AsyncStorage,
   whitelist: ["NotesReducer"]
 });
+
 export default store;

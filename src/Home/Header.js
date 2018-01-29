@@ -1,39 +1,40 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
+
+import IconButton from "../Components/IconButton";
 import {
   HEADER_HEIGHT,
   HEADER_BG_COLOR,
   HEADER_FONT_SIZE,
   ITEM_PADDING
 } from "../Constants";
-import IconButton from "../Components/IconButton";
 
-export default class Header extends Component {
-  render() {
-    let { sHeaderContainer, sHeaderText } = styles;
-    let { onAddPress, onFilterPress, hasFilter } = this.props;
-    return (
-      <View style={sHeaderContainer}>
-        <Text style={sHeaderText}>Notely</Text>
-        <View style={{ flexDirection: "row" }}>
-          <IconButton
-            style={{ marginHorizontal: ITEM_PADDING / 2 }}
-            iconStyle={{ color: "black" }}
-            type={IconButton.ADD}
-            onPress={() => onAddPress()}
-          />
-          <IconButton
-            style={{ marginHorizontal: ITEM_PADDING / 2 }}
-            iconStyle={{ color: "black" }}
-            type={IconButton.FILTER}
-            onPress={() => onFilterPress()}
-            hasBadge={hasFilter}
-          />
-        </View>
+const Header = props => {
+  let { sHeaderContainer, sHeaderText } = styles;
+  let { onAddPress, onFilterPress, hasFilter } = props;
+  return (
+    <View style={sHeaderContainer}>
+      <Text style={sHeaderText}>Notely</Text>
+      <View style={{ flexDirection: "row" }}>
+        <IconButton
+          style={{ marginHorizontal: ITEM_PADDING / 2 }}
+          iconStyle={{ color: "black" }}
+          type={IconButton.ADD}
+          onPress={() => onAddPress()}
+        />
+        <IconButton
+          style={{ marginHorizontal: ITEM_PADDING / 2 }}
+          iconStyle={{ color: "black" }}
+          type={IconButton.FILTER}
+          onPress={() => onFilterPress()}
+          hasBadge={hasFilter}
+        />
       </View>
-    );
-  }
-}
+    </View>
+  );
+};
+
+export default Header;
 
 const styles = StyleSheet.create({
   sHeaderContainer: {

@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { connect } from "react-redux";
 
-import { MENU_BG_COLOR } from "../Constants";
 import MenuItem from "./MenuItem";
 import MenuHeader from "./MenuHeader";
 import MenuFooter from "./MenuFooter";
+import { MENU_BG_COLOR } from "../Constants";
 import { applyFilters } from "../Store/Actions/NotesActions";
 import { changeMenuVisible } from "../Store/Actions/AppActions";
 
