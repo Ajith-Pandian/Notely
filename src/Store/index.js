@@ -1,9 +1,10 @@
 import { compose, createStore, applyMiddleware } from "redux";
-import { persistStore, autoRehydrate } from "redux-persist";
+import { persistStore, persistReducer } from "redux-persist";
+
 import { AsyncStorage } from "react-native";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
-import rootReducer from "./Reducers";
+import persistedReducer from "./Reducers";
 
 const middlewares = [];
 middlewares.push(thunk);
@@ -13,15 +14,15 @@ if (process.env.NODE_ENV === `development`) {
   middlewares.push(logger);
 }
 
-const store = createStore(
-  rootReducer,
+export const store = createStore(
+  persistedReducer,
   {},
-  compose(applyMiddleware(...middlewares), autoRehydrate(true))
+  compose(applyMiddleware(...middlewares))
 );
 
-persistStore(store, {
-  storage: AsyncStorage,
-  whitelist: ["NotesReducer"]
-});
+export let persistor = persistStore(store);
 
-export default store;
+// persistStore(store, {
+//   storage: AsyncStorage,
+//   whitelist: ["NotesReducer"]
+// });

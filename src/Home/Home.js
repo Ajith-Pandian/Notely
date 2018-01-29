@@ -12,7 +12,7 @@ import {
   deleteNote
 } from "../Store/Actions/NotesActions";
 
-const Placeholder = ({ isFiltered }) => (
+const Placeholder = ({ isFiltered, navigation }) => (
   <View style={styles.sPlaceholderContainer}>
     <Text style={styles.sPlaceholderText}>
       {isFiltered ? "No notes found. Try other filters" : "No notes"}
@@ -22,6 +22,7 @@ const Placeholder = ({ isFiltered }) => (
         text={"CREATE NOTE"}
         onPress={() => navigation.navigate("Details", { isNew: true })}
         style={styles.sPlaceholderButton}
+        textStyle={{ color: "white" }}
       />
     ) : null}
   </View>
@@ -71,7 +72,7 @@ const Home = props => {
             onItemDelete={itemId => _deleteNote(itemId)}
           />
         ) : (
-          <Placeholder isFiltered={isFiltered} />
+          <Placeholder isFiltered={isFiltered} navigation={navigation} />
         )}
       </View>
     </View>

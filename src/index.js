@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { View, Text, StatusBar, Platform } from "react-native";
-
 import SideMenu from "react-native-side-menu";
 import { StackNavigator } from "react-navigation";
 import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/lib/integration/react";
 
-import store from "./Store";
+import { store, persistor } from "./Store";
 import HomeWithMenu from "./Home";
 import DetailsScreen from "./Details";
+import Loading from "./Components/Loading";
 import { MENU_WIDTH, HEADER_BG_COLOR } from "./Constants";
 
 const StackApp = StackNavigator({
@@ -35,7 +36,13 @@ const App = () => (
 
 const ReduxApp = () => (
   <Provider store={store}>
-    <App />
+    <PersistGate
+      loading={<Loading />}
+      onBeforeLeft={() => console.log("onBeforeLeft")}
+      persistor={persistor}
+    >
+      <App />
+    </PersistGate>
   </Provider>
 );
 

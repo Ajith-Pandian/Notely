@@ -23,7 +23,6 @@ const Header = props => {
           onPress={() => onAddPress()}
         />
         <IconButton
-          style={{ marginHorizontal: ITEM_PADDING / 2 }}
           iconStyle={{ color: "black" }}
           type={IconButton.FILTER}
           onPress={() => onFilterPress()}
